@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p>{{param}}</p>
+    <button v-on:click="clicking">클릭</button>
+    <p v-if="hide">하이</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          param:"v-if 속성 연습",
+          hide:false
+        },
+        methods:{
+          clicking:function(){
+            this.hide=!this.hide; //this가 없으면 안 됨
+          }
+        }
+      })
+  </script>
+</body>
+</html>

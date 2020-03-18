@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p>hello {{param}}</p>
+    <ol>
+      <li v-for="item in list">{{item}}</li>
+      <li v-for="a in list">{{a}}</li>
+    </ol>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          param:"ryuna",
+          list : ["태그 내의 item 변수명은","바꿔도 상관없음"]
+        }
+      })
+  </script>
+</body>
+</html>
