@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p>{{count}}</p>
+    <p>{{secondCount}}</p>
+    <p>{{clicking()}}</p>
+    <p>{{clicking2}}</p>
+    <button v-on:click="count++">클릭</button>
+    <button @click="secondCount++">클릭2</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          count:0,
+          secondCount:0
+        },
+        computed:{
+          clicking2:function(){ //secondCount가 변경될때만 실행됨
+              console.log("clicking2")
+              return this.secondCount //secondCount는 현재 1이지만 반환받은 값은 증가 이전의 0이므로 p태그의 값이 다른 것
+          }
+        }
+        ,
+        methods:{
+          clicking:function(){ //count와는 변경없이 데이터의 변경이 있을 때마다 실행됨
+              console.log("clicking")
+              return this.count
+          }
+        }
+      })
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p>hello {{param}}</p> <!--Mustache 기법-->
+    <input v-bind:value="param"> <!-- 태그 속성으로 사용될 때는 Mustache는 사용 불가-->
+    <div class="normal" v-bind:class="param"></div> <!--<div class="normal param">과 동일 -->
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{ //변수들(리액티브 : 데이터 변경, set, get에 연결된 컴포넌트들이 바로 갱신하는 것)
+          param:"ryuna"
+        }
+      })
+  </script>
+</body>
+</html>
