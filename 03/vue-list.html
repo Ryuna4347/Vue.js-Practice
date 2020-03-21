@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <!--data내의 items 안에 있는 요소들에 대한 for문-->
+      <li v-for='item in items' :key='item.id'> <!--키의 여부 : DOM 변동시 효율적 처리. 키가 없는 경우 요소 전체를 변경, 있으면 해당 key의 DOM만 변경됨-->
+        {{item.id}} {{item.name}} {{item.a+item.b}}
+      </li>
+    </ul>
+    <button @click="AddNewOne">새 요소 추가</button>
+    <button @click="DeleteLast">요소 제거</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          items:[
+            {id:1, name:'ryuna1', a:1, b:2},
+            {id:2, name:'ryuna2', a:2, b:3},
+            {id:3, name:'ryuna3', a:4, b:5}
+          ]
+        },
+        methods:{
+          AddNewOne:function(){ //items리스트에 새로운 요소 추가
+            this.items.push({id:4, name:'ryuna4',a:1,b:5})
+          },
+          DeleteLast:function(){ //items리스트에서 마지막 요소를 하나씩 제거 가능하다.
+            this.items.splice(this.items.length-1,1)
+          }
+        }
+      })
+  </script>
+</body>
+</html>

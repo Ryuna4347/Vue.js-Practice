@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for='item in items' :key='item.id' class="{item.id%2==1}">
+        {{item.id}} {{item.name}} {{item.a+item.b}}
+        <p v-if="item.id%2==1">안녕하세요</p> <!--v-for안에서는 어느 태크에서도 item에 접근할 수 있다.-->
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          items:[
+            {id:1, name:'ryuna1', a:1, b:2},
+            {id:2, name:'ryuna2', a:2, b:3},
+            {id:3, name:'ryuna3', a:4, b:5}
+          ]
+        }
+      })
+  </script>
+  <style>
+  .bold{
+    font-weight:bold;
+  }
+  </style>
+</body>
+</html>

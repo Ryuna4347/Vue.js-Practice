@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <button v-bind="items"  @click="clicking()">hi</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          items:{ //버튼의 속성이 여기에 들어있다.
+            id:'1',
+            value:'hello'
+          }
+        },
+        methods:{
+          clicking:function(){ //버튼 클릭을 통해 데이터를 바꾸면 연결된 태그의 정보도 수정된다.
+            alert(this.items.value);
+            this.items.value='hi'
+          }
+        }
+      })
+  </script>
+</body>
+</html>
