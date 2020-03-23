@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p v-bind='greeting' v-if="greeting.isBlind==false">문장 : {{greeting.value}}</p> <!---->
+
+    <!--위와 아래 input의 차이는 input에 입력할 때 바로 위 문장에 바인드 적용이 되는가, 버튼을 통해 적용이 되는가의 차이-->
+    <!--<input type='text' v-model='greeting'/>-->
+    <input type='text' id='name' v-bind='greeting.value'/> <!--[Vue warn]: v-bind without argument expects an Object or Array value 경고의 원인이 된다.-->
+
+    <button @click='adjust'>적용</button>
+    <button @click='changeHide'>보이기/숨기기</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          greeting: {value: 'hi', isBlind:false}
+        },
+        methods:{
+          adjust:function(){ //
+            var value=document.getElementById('name').value;
+            this.greeting.value=value;
+          },
+          changeHide:function(){
+            this.greeting.isBlind=!this.greeting.isBlind;
+          }
+        }
+      })
+  </script>
+</body>
+</html>

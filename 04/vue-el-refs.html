@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p ref='hello' v-if='show==true'>0</p>
+    <button @click='changeNum'>번호 바꾸기</button>
+    <button @click='show=!show'>숨기기</button>
+  </div>
+  <div id="app2">
+    <p>{{greeting}}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          greeting: {value: 'hi', isBlind:false},
+          show:true
+        },
+        methods:{
+           //이것을 적용한 뒤 v-if로 인해 DOM이 사라졌다 생성되면 초기값으로 복구 되어있다.
+          //(이미 가상 DOM이 만들어져있으므로 물리적으로 DOM을 수정해도 불러올 때는 가상 DOM을 기반으로 불러온다.)
+            changeNum:function(){
+              this.$refs.hello.innerText=(this.$refs.hello.innerText,10)+1
+          }
+        }
+      }),
+      new Vue({
+        el:'#app2', //$el을 통해서 다른 태그 내 DOM을 조작할 수 있다.
+        data:{
+          greeting:'hello'
+        }
+      })
+  </script>
+</body>
+</html>

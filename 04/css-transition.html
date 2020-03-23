@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 Transition</title>
+	<style>
+		div.keyboard {
+			background-color: orange;
+			height: 50px;
+			width: 100px;
+			margin: 10px;
+			-webkit-transition: width 1s; /*구글, 사파리에 사용(크로싱 브라우저)*/
+			transition: width 1s; /*위와 같은 의미. 아래의 hover이벤트로인해 width가 변경될 시 1초에 걸쳐서 애니메이션처럼 실행*/
+		}
+		div.keyboard:hover { width: 300px; } /*hover : 마우스가 요소 위에 올려져 있는 경우 발생*/
+	</style>
+</head>
+
+<body>
+
+	<h1>요소의 너비 변화</h1>
+	<div class="keyboard"></div>
+	<div class="keyboard"></div>
+	<div class="keyboard"></div>
+	<div class="keyboard"></div>
+	<div class="keyboard"></div>
+	<p>각 키보드 위로 마우스를 올려놔 보세요!!</p>
+
+</body>
+
+</html>

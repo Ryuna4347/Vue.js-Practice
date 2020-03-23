@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 Transition</title>
+	<style>
+		div.keyboard {
+			background-color: orange;
+			height: 50px;
+			width: 100px;
+			margin: 10px;
+			-webkit-transition: width 1s;
+			transition: width 1s;
+		}
+		div.keyboard.hover{ /*:hover 선택자 대신 클래스를 사용*/
+			width:300px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id='app'>
+		<h1>요소의 너비 변화</h1>
+		<div v-bind:class='classes' @mouseenter='classes.hover=true' @mouseleave='classes.hover=false'></div> <!--마우스 엔터시 클래스 부여, 리브시 클래스 박탈-->
+		<p>각 키보드 위로 마우스를 올려놔 보세요!!</p>
+	</div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+				data:{
+					//div에 사용되는 클래스
+					classes:{ //(여러개를 하나의 클래스로 묶으면 같이 변화가 되서 여러개 사용시는 ref로 특정 태그만 클래스를 부여하거나 클래스 변수를 따로 써야할듯)
+						keyboard : true,
+						hover : false
+					}
+				}
+			})
+	</script>
+</body>
+
+</html>
