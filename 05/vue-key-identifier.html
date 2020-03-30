@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <!--키다운 이벤트가 적용되는 태그 : input, a, textarea 정도? tabindex를 사용하면 focus를 다른 곳에서도 줄 수 있는 듯-->
+      <!--아래 input은 focus되어있지 않으면 키다운 이벤트가 실행이 안된다.(두개 동시에 이벤트 핸들러가 실행되진 않는다.)-->
+      <input @keydown.up="handler('1')"/> <!--input에 focus되어있는 상태에서 윗방향키 누르면 메소드 호출됨-->
+      <input @keydown.right.left="handler('2')"/> <!--input에 focus되어있는 상태에서 윗방향키 누르면 메소드 호출됨-->
+      <a href="#" @keydown.right.left="handler('3')"/>hello</a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        methods:{
+          handler:function(comment){
+            console.log(comment);
+          }
+        }
+      })
+  </script>
+</body>
+</html>

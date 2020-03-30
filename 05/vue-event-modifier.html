@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <div @click="handler('div1')">
+      <div @click.stop="handler('div2')"> <!--stop:상위 요소로 이벤트가 전달되는 버블링을 방지-->
+        <p>hello</p>
+      </div>
+      <a href='#app' @click.prevent="handler('div2')">div2</a> <!--태그의 기본적인 기능 방지(submit같은거)-->
+    </div>
+    <div @click.capture="handler('div1')"> <!--캡쳐모드 : 하위 이벤트 발생시 여기부터 처리(1->2 순서이기 때문에 stop이 div1에 적용되지 않는다.)-->
+      <div @click.stop="handler('div2')">
+        <p>hello</p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{
+          handler:function(comment){
+            console.log(comment);
+          }
+        }
+      })
+  </script>
+</body>
+</html>

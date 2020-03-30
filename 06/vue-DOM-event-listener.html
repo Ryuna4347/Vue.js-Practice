@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app" style="background-color:blue; width:1000px; height:1000px" v-bind:class="{compact : scrollY > 200}"> <!--200px이상 스크롤 할 경우 compact 클래스가 추가된다.-->
+
+  </div>
+  <div id="app2" style="background-color:red; width:1000px; height:1000px">
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          scrollY:0,
+          timer:null
+        },
+        created:function(){
+          window.addEventListener('scroll',this.handleScroll) //스크롤에 대한 이벤트 리스너 추가
+        },
+        beforeDestroy:function(){ //핸들러 제거하기(컴포넌트 or SPA의 경우 반드시 제거)
+          window.removeEventListner('scroll',this.handleScroll)
+        },
+        methods:{
+          handleScroll:function(){
+            if(this.timer===null){
+              this.timer=setTimeout(function(){
+                this.scrollY=window.scrollY
+                clearTimeout(this.timer)
+                this.timer=null
+              }.bind(this),200) //bind(this)를 통해 setTimeout안에서도 this를 뷰 인스턴스 스코프에 맞춰 쓸 수 있다.
+            }
+          }
+        }
+      })
+  </script>
+</body>
+</html>

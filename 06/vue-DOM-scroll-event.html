@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app" style="background-color:blue; width:1000px; height:1000px">
+
+  </div>
+  <div id="app2" style="background-color:red; width:1000px; height:1000px">
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          scrollY:0,
+          timer:null
+        },
+        mounted:function(){
+          this.handleScroll(); //DOM이 마운트 된 이후 반복 시작
+        },
+        methods:{
+          handleScroll:function(){
+            this.timer=setInterval(function(){
+                this.scrollY=window.scrollY //scrollY에 현재 창의 y축 스크롤 위치를 대입(표시하고 싶으면 사용)
+                window.scrollBy(0,100) //Y축으로 100픽셀 이동
+            },2000) //2000밀리초 단위로 반복 실행
+          }
+        }
+      })
+  </script>
+</body>
+</html>
