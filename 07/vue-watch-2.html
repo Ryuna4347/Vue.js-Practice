@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <input v-model.number.lazy="count"></input>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          money : 0,
+          count : 0,
+        },
+        created:function(){
+          var unwatch=this.$watch('count',function(){ //인스턴스 메서드로 워처를 등록하는 방법
+            console.log('카운트 변경');
+            unwatch(); //인스턴스 메서드의 반환형은 워처를 제거하는 값. 이렇게 사용하면 워처가 1회용이 된다.
+          },{
+            deep:false,
+            immediate:true
+          })
+        },
+        computed:{
+          watchTarget:function(){
+            return [this.money,this.count]
+          }
+        },
+        watch:{
+          watchTarget:function(){ //이런식으로 여러 값(여기서는 money, count)을 하나의 객체로 묶어서 감시할 수도 있고, 산출속성에서 객체를 반환시키게 할 수도 있다.
+
+          }
+        }
+
+      })
+  </script>
+</body>
+</html>

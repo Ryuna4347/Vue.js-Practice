@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <p>{{GetNumber}}</p> <!--methods와 달리 ()가 필요하지 않다.-->
+    <p>{{GetRandom}}</p>
+    <p>{{GetRandom}}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          number : 1
+        },
+        computed:{
+          GetNumber:function(){
+            return this.number;
+          },
+          GetRandom:function(){
+            return Math.random(); //산출 속성은 리액티브 데이터의 변경에만 갱신되므로 수가 바뀌지 않고 초기에 나온 난수가 계속 반환된다.
+          }
+        }
+      })
+  </script>
+</body>
+</html>

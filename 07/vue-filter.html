@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <div>{{money|localeNum}}</div>
+      <div>{{money|locale(100,200)}}</div> <!--매개변수를 필터에 줄 경우 money가 첫번째 매개변수가 되고 그 뒤에 100,200이 따라들어간다.-->
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      Vue.filter('locale',function(val,num1,num2){ //필터를 전역으로 선언(모든 컴포넌트에서 사용가능. 전역 선언시 뒤에 s가 안 들어간다.)
+        console.log('hi')
+        return val.toLocaleString()
+      })
+      new Vue({
+        el:'#app',
+        data:{
+          money : 19990,
+          count : 0,
+        },
+        filters:{
+          localeNum:function(val){ //val(필터 앞에 있는 값)을 쉼표로 구분지어주기 위한 필터
+            return val.toLocaleString()
+          }
+        }
+      })
+  </script>
+</body>
+</html>

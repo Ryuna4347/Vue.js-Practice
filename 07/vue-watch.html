@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <input v-model.number.lazy="count"></input>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          money : 0,
+          count : 0,
+        },
+        watch:{ //워쳐는 기본적으로 데이터를 리턴하지 않는다.(처리 위주)
+          count: function(newVal,oldVal){ //새로운 값, 이전 값
+            if(newVal>oldVal){ //새로운 값이 이전 값보다 더 클 경우에만 실행 된다.
+              console.log('newVal이 더 큼!');
+            }
+          },
+          money{ //옵션을 사용할 때는 함수는 handler 속성에 넣으면 된다.
+            handler:function(newVal,oldVal){
+
+            },
+            deep : true, //네스트된 객체도 감시할지(이 데이터와 연결된 객체??)
+            immediate : true //처음 값을 읽어 들이는 시점에서 호출할지 여부
+          }
+        }
+      })
+  </script>
+</body>
+</html>

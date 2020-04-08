@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Vue.js 01</title>
+    <link href="main.css" rel="stylesheet"/>
+</head>
+<body>
+  <div id="app">
+    <input v-model.number="money"></input>
+    <input v-model.number.lazy="count"></input> <!--count만 바꾸면 search 배열을 변함이 없고, limit만 실행된다.(search에 count에 관련된 데이터가 없음)-->
+    <ul>
+      <li v-for="item in search" v-bind:key="item.id">
+        {{item.name}} {{item.price}}원
+      </li>
+    </ul>
+    <ul>
+      <li v-for="item in limit" v-bind:key="item.id">
+        {{item.name}} {{item.price}}원
+      </li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      new Vue({
+        el:'#app',
+        data:{
+          money : 0,
+          count : 0,
+          list:[{id:1,name:'사과',price:100},{id:2,name:'배',price:300},{id:3,name:'감',price:50},{id:4,name:'대추',price:300}]
+        },
+        computed:{
+          search:function(){
+            return this.list.filter(function(el){
+              return el.price<=this.money
+            },this) //여기서 this는 bind()같은 역할(Vue 인스턴스를 this로 사용가능하도록)
+          },
+          limit:function(){ //search에서 필터링한 배열을 일부만 리턴
+            //return this.search.splice(0,this.count) //그냥 splice()를 사용하면 search 배열을 잘라내게 되어서 search의 크기가 limit 실행시마다 계속 줄어든다.
+            return this.search.slice(0).splice(0,this.count) //slice()를 이용해서 얕은 복사를 통해 얻은 배열을 잘라내면 search 배열에 영향을 주지 않는다.(올바른 방법)
+          }
+        }
+      })
+  </script>
+</body>
+</html>
